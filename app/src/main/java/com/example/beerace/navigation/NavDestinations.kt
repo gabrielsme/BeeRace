@@ -4,3 +4,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 object MainRoute
+
+@Serializable
+object RaceRoute

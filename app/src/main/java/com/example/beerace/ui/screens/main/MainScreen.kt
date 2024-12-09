@@ -7,18 +7,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.beerace.R
+import com.example.beerace.ui.ScreenPreview
 import com.example.beerace.ui.components.CustomButtom
-import com.example.beerace.ui.theme.BeeRaceTheme
 
 @Composable
-fun MainScreen() {
+fun MainScreen(
+    onButtonClick: () -> Unit = {}
+) {
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = androidx.compose.ui.Alignment.Center,
     ) {
         CustomButtom(
             action = {
-
+                onButtonClick()
             },
             text = stringResource(R.string.main_button_title)
         )
@@ -28,7 +30,7 @@ fun MainScreen() {
 @Preview(showSystemUi = true)
 @Composable
 private fun MainScreenPreview() {
-    BeeRaceTheme {
+    ScreenPreview {
         MainScreen()
     }
 }

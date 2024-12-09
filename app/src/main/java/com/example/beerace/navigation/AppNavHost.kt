@@ -5,6 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.beerace.ui.screens.main.MainScreen
+import com.example.beerace.ui.screens.race.RaceScreen
 
 @Composable
 fun AppNavigation() {
@@ -15,7 +16,15 @@ fun AppNavigation() {
     ) {
 
         composable<MainRoute> {
-            MainScreen()
+            MainScreen(
+                onButtonClick = {
+                    navController.navigate(RaceRoute)
+                }
+            )
+        }
+
+        composable<RaceRoute> {
+            RaceScreen()
         }
 
     }
