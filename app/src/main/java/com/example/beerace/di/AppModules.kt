@@ -9,7 +9,7 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-private const val BASE_URL = "https://rtest.proxy.beeceptor.com/bees/"
+private const val BASE_URL = "https://rtest.proxy.beeceptor.com/"
 
 val viewModelModule = module {
     viewModel { RaceViewModel(get()) }

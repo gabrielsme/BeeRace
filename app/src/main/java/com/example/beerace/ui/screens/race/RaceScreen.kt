@@ -1,5 +1,6 @@
 package com.example.beerace.ui.screens.race
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -28,7 +29,8 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun RaceScreen(
-    viewModel: RaceViewModel = koinViewModel()
+    viewModel: RaceViewModel = koinViewModel(),
+    openWebView: (String) -> Unit = {}
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
@@ -55,7 +57,16 @@ fun RaceScreen(
 
     LaunchedEffect(Unit) {
         viewModel.getRaceDuration()
-        viewModel.getRaceStatus()
+    }
+    LaunchedEffect(uiState.error403) {
+        if (uiState.error403 != null) {
+            openWebView(uiState.error403?.captchaUrl ?: "")
+        }
+    }
+    LaunchedEffect(uiState.genericError) {
+        if (uiState.genericError) {
+
+        }
     }
 }
 

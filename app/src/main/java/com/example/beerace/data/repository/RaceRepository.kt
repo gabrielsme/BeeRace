@@ -1,5 +1,6 @@
 package com.example.beerace.data.repository
 
+import com.example.beerace.data.model.CaptchaErrorResponse
 import com.example.beerace.data.model.RaceDurationResponse
 import com.example.beerace.data.model.RaceStatusResponse
 import com.example.beerace.data.source.ApiDataSource
@@ -20,6 +21,10 @@ class RaceRepository(
 
     fun getRaceStatus(): Flow<RaceStatusResponse> = flow {
         emit(apiDataSource.getRaceStatus())
+    }.flowOn(ioDispatcher)
+
+    fun captchaTest(): Flow<CaptchaErrorResponse> = flow {
+        emit(apiDataSource.captchaTest())
     }.flowOn(ioDispatcher)
 
 }
