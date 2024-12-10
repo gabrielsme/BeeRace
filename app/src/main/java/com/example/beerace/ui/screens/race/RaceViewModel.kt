@@ -24,13 +24,21 @@ class RaceViewModel(
 
     fun getRaceDuration() {
         viewModelScope.launch {
+            _uiState.value = _uiState.value.copy(
+                beeList = emptyList(),
+                genericError = false,
+                error403 = null,
+                timeRemaining = null,
+                timeRemainingDisplay = ""
+            )
+
             raceRepository.getRaceDuration().collect { result ->
                 startCountdown(result.timeInSeconds)
             }
         }
     }
 
-    fun getRaceStatus() {
+    private fun getRaceStatus() {
         viewModelScope.launch {
             _uiState.value = _uiState.value.copy(
                 genericError = false,

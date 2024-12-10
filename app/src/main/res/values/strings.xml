@@ -2,4 +2,9 @@
     <string name="app_name">BeeRace</string>
     <string name="main_button_title">Start Bee Race</string>
     <string name="race_title">Time remaining</string>
+    <string name="winner_title">Winner</string>
+    <string name="winner_first_place">1st</string>
+    <string name="winner_button">re-Start Bee Race</string>
+    <string name="generic_error_title">Oops !!</string>
+    <string name="generic_error_subtitle">Something went wrong</string>
 </resources>

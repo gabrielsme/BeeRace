@@ -1,6 +1,5 @@
 package com.example.beerace.ui.screens.race
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -23,6 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.beerace.R
+import com.example.beerace.data.model.Bee
 import com.example.beerace.ui.ScreenPreview
 import com.example.beerace.ui.components.ListBeeItem
 import org.koin.androidx.compose.koinViewModel
@@ -30,7 +30,9 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun RaceScreen(
     viewModel: RaceViewModel = koinViewModel(),
-    openWebView: (String) -> Unit = {}
+    openWebView: (String) -> Unit = {},
+    openGenericErrorScreen: () -> Unit = {},
+    openWinnerScreen: (Bee) -> Unit = {}
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
@@ -65,7 +67,12 @@ fun RaceScreen(
     }
     LaunchedEffect(uiState.genericError) {
         if (uiState.genericError) {
-
+            openGenericErrorScreen()
+        }
+    }
+    LaunchedEffect(uiState.timeRemaining) {
+        if (uiState.timeRemaining == 0 && uiState.beeList.isNotEmpty()) {
+            openWinnerScreen(uiState.beeList.first())
         }
     }
 }
